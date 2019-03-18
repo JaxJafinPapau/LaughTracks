@@ -1,44 +1,77 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8"
-    <link rel="stylesheet" href="public/main.css">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="/bootstrap.css" title="text/css">
+    <link rel="stylesheet" href="/bootstrap-grid.css" title="text/css">
+    <link rel="stylesheet" href="/main.css" title="text/css">
     <title>Comedians</title>
   </head>
   <body>
-    <h1>Welcome to Comedians!</h1>
-    <h2 id="statistics">Statistics:
-      <ul>
-        <li>Average age: <%= @comedians.average_age %></li>
-        <li>Average special length: <%= @specials.average_run_length %></li>
-        <li>Special counts: <ul><% @comedians.each do |comedian| %>
-            <li> <%= comedian.name %> : <%= comedian.specials.count %></li>
-              <% end %>
-            </ul>
-        </li>
-        <li>Hometowns: <ul><% @comedians.each do |comedian| %>
-            <li><%= comedian.name %> : <%= comedian.birthplace %></li>
-            <% end %>
-          </ul>
-        </li>
-      </ul>
-    </h2>
-    <% @comedians.each do |comedian| %>
-      <ul id="comedian-<%=comedian.id%>">
-        <li>Name: <%= comedian.name %></li>
-        <li>Age: <%= comedian.age %></li>
-        <li>Birthplace: <%= comedian.birthplace %></li>
-        <li>Photo: <img src=<%= comedian.image_url %> alt="comedian photo" style="width:100px;height:100px;">
-        <li>Number of specials: <%= comedian.specials.count %></li>
-        <li><% comedian.specials.each do |special| %>
-          <ul id="special-<%=special.id%>">
-            <li>Name: <%= special.title %></li>
-            <li>Runtime: <%= special.runtime_mins %></li>
-            <li><img src=<%= special.image_url %> alt="Special Thumb" style="width:100px;height:100px;"></li>
-          </ul>
-          <% end %>
-        </li>
-      </ul>
+    <div class="container">
+      <h1><div class="object">Welcome to Comedians!</div></h1>
+    </div>
+    <div class="container">
+      <h2 id="statistics">Statistics:
+        <ul>
+          <div class="row">
+            <div class="col-6">
+              <li><div class="container-fluid">Average age: <%= @comedians.average_age %></div></li>
+            </div>
+            <div class="col-6">
+              <li><div class="container-fluid">Average special length: <%= @specials.average_run_length %></div></li>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6"
+              <li><div class="container-fluid">Special counts: <ul><% @comedians.each do |comedian| %>
+                  <li> <%= comedian.name %> : <%= comedian.specials.count %></li>
+                    <% end %>
+                  </ul>
+                  </div>
+              </li>
+            </div>
+            <div class="col-6">
+              <li><div class="container-fluid">Hometowns: <ul><% @comedians.each do |comedian| %>
+                  <li><%= comedian.name %> : <%= comedian.birthplace %></li>
+                  <% end %>
+                </ul>
+                </div>
+              </li>
+            </div>
+          </div>
+        </ul>
+      </h2>
+    </div>
+    <h3 class ="container-fluid" align="center"><a href="/comedians/new">New Comedian</a></h3>
+    <% @comedians.each_slice(3) do |row| %>
+      <div class="row">
+        <% row.each do |comedian| %>
+          <div class="col-4">
+            <div class="container-fluid"
+              <ul id="comedian-<%=comedian.id%>">
+                <li>Name: <%= comedian.name %></li>
+                <li>Age: <%= comedian.age %></li>
+                <li>Birthplace: <%= comedian.birthplace %></li>
+                <li>Photo: <img src=<%= comedian.image_url %> alt="comedian photo" style="width:100px;height:100px;">
+                <li>Number of specials: <%= comedian.specials.count %></li>
+                <li><% comedian.specials.each do |special| %>
+                  <ul id="special-<%=special.id%>">
+                    <li>Name: <%= special.title %></li>
+                    <li>Runtime: <%= special.runtime_mins %></li>
+                    <li><img src=<%= special.image_url %> alt="Special Thumb" style="width:100px;height:100px;"></li>
+                  </ul>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
+          </div>
+        <% end %>
+      </div>
     <% end %>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </body>
 </html>
